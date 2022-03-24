@@ -17,7 +17,7 @@ export function TaskList() {
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
     const numberRandomID : number = Math.random() * 100000000000000000; //nao preciso verificar pois e quase impossivel existir dois IDs que irao se coincidir
-    setNewTaskTitle(newTaskTitle);
+    newTaskTitle !==  '' ? setNewTaskTitle(newTaskTitle) : new Error('nao pode adicionar tarefa sem titulo');
     setTasks([...tasks, {
       id : numberRandomID,
       title : newTaskTitle,
@@ -41,7 +41,7 @@ export function TaskList() {
 
   }
 
-  function handleRemoveTask(id: number) {
+  function handleRemoveTask(id : number) {
     // Remova uma task da listagem pelo ID
     //Encontra pelo ID e remove a task pelo index com funcao de array
     const tasksVirtual = [...tasks];
