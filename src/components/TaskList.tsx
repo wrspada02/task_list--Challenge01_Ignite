@@ -17,14 +17,15 @@ export function TaskList() {
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
     const numberRandomID : number = Math.random() * 100000000000000000; //nao preciso verificar pois e quase impossivel existir dois IDs que irao se coincidir
-    newTaskTitle !==  '' ? setNewTaskTitle(newTaskTitle) : new Error('nao pode adicionar tarefa sem titulo');
-    setTasks([...tasks, {
-      id : numberRandomID,
-      title : newTaskTitle,
-      isComplete : false //inicialmente
-    }]);
-
-    setNewTaskTitle('');
+    if(newTaskTitle !== ''){
+      setTasks([...tasks, {
+        id : numberRandomID,
+        title : newTaskTitle,
+        isComplete : false //inicialmente
+      }]);
+  
+      setNewTaskTitle('');
+    }
   }
 
   function handleToggleTaskCompletion(id : number) {
